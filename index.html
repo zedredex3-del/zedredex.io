@@ -1,100 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Heart Rain with Text</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Rain with Text</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body{
-    height:100vh;
-    overflow:hidden;
-    background:linear-gradient(to bottom,#000,#200020);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Arial,sans-serif;
-}
+      body {
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #000, #200020);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
 
-.message{
-    position:absolute;
-    z-index:100;
-    text-align:center;
-    color:white;
-    font-size:3rem;
-    font-weight:bold;
-    text-shadow:
-        0 0 10px #ff4d88,
-        0 0 20px #ff4d88,
-        0 0 40px #ff4d88;
-    animation:pulse 2s infinite;
-}
+      .message {
+        position: absolute;
+        z-index: 100;
+        text-align: center;
+        color: white;
+        font-size: 3rem;
+        font-weight: bold;
+        text-shadow:
+          0 0 10px #ff4d88,
+          0 0 20px #ff4d88,
+          0 0 40px #ff4d88;
+        animation: pulse 2s infinite;
+      }
 
-.heart{
-    position:absolute;
-    top:-50px;
-    font-size:24px;
-    pointer-events:none;
-    animation:fall linear forwards;
-}
+      .heart {
+        position: absolute;
+        top: -50px;
+        font-size: 24px;
+        pointer-events: none;
+        animation: fall linear forwards;
+      }
 
-@keyframes fall{
-    from{
-        transform:translateY(-50px) rotate(0deg);
-        opacity:1;
-    }
-    to{
-        transform:translateY(110vh) rotate(360deg);
-        opacity:0;
-    }
-}
+      @keyframes fall {
+        from {
+          transform: translateY(-50px) rotate(0deg);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
 
-@keyframes pulse{
-    0%,100%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.1);
-    }
-}
-</style>
-</head>
-<body>
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message">
+      ❤️ Happy Birth Day ❤️ <br />
+      ❤️ Sann Sann ❤️<br />
+      ❤️ Enjoy your day ❤️
+    </div>
+    <audio id="bgMusic" loop>
+      <source src="8Letter.mp3" type="audio/mpeg" />
+    </audio>
+    <script>
+      const emojis = ["❤️", "💖", "💕", "💗", "💓", "💘"];
 
-<div class="message">
-    ❤️ I Love You ❤️
-</div>
+      function createHeart() {
+        const heart = document.createElement("div");
 
-<script>
-const emojis = ["❤️","💖","💕","💗","💓","💘"];
+        heart.className = "heart";
+        heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
 
-function createHeart(){
-    const heart = document.createElement("div");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = 20 + Math.random() * 30 + "px";
 
-    heart.className = "heart";
-    heart.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+        const duration = 3 + Math.random() * 4;
+        heart.style.animationDuration = duration + "s";
 
-    heart.style.left = Math.random()*window.innerWidth + "px";
-    heart.style.fontSize = (20 + Math.random()*30) + "px";
+        document.body.appendChild(heart);
 
-    const duration = 3 + Math.random()*4;
-    heart.style.animationDuration = duration + "s";
+        setTimeout(() => {
+          heart.remove();
+        }, duration * 1000);
+      }
 
-    document.body.appendChild(heart);
+      setInterval(createHeart, 100);
 
-    setTimeout(() => {
-        heart.remove();
-    }, duration*1000);
-}
-
-setInterval(createHeart, 100);
-</script>
-
-</body>
+      document.addEventListener(
+        "click",
+        function startMusic() {
+          const music = document.getElementById("bgMusic");
+          music.play();
+          document.removeEventListener("click", startMusic);
+        },
+        { once: true },
+      );
+    </script>
+  </body>
 </html>
