@@ -35,18 +35,17 @@
           0 0 40px #ff4d88;
         animation: pulse 2s infinite;
       }
-      #startScreen{
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,.8);
-        color:white;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        font-size:2rem;
-        z-index:9999;
+      .startScreen {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        z-index: 9999;
       }
-
       .heart {
         position: absolute;
         top: -50px;
@@ -83,13 +82,11 @@
       ❤️ Sann Sann ❤️<br />
       ❤️ Enjoy your day ❤️
     </div>
-   <div id="startScreen">
-    ❤️ Tap Anywhere ❤️
-</div>
+    <div id="startScreen">❤️ Tap Anywhere ❤️</div>
 
-<audio id="bgMusic" loop>
-    <source src="8Letter.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop>
+      <source src="8Letter.mp3" type="audio/mpeg" />
+    </audio>
     <script>
       const emojis = ["❤️", "💖", "💕", "💗", "💓", "💘"];
 
@@ -114,17 +111,16 @@
 
       setInterval(createHeart, 100);
 
-     const startScreen = document.getElementById("startScreen");
-const music = document.getElementById("bgMusic");
+      const startScreen = document.getElementById("startScreen");
+      const music = document.getElementById("bgMusic");
 
-function startExperience() {
-    music.play();
-    startScreen.style.display = "none";
-}
+      function startExperience() {
+        music.play();
+        startScreen.style.display = "none";
+      }
 
-startScreen.addEventListener("click", startExperience);
-startScreen.addEventListener("touchstart", startExperience);
-      );
+      startScreen.addEventListener("click", startExperience);
+      startScreen.addEventListener("touchstart", startExperience);
     </script>
   </body>
 </html>
