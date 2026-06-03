@@ -99,13 +99,13 @@
 
       setInterval(createHeart, 100);
 
-      document.addEventListener(
-        "click",
-        function startMusic() {
-          const music = document.getElementById("bgMusic");
-          music.play();
-          document.removeEventListener("click", startMusic);
-        },
+     window.addEventListener("load", () => {
+    const music = document.getElementById("bgMusic");
+
+    music.play().catch(() => {
+        console.log("Autoplay blocked by browser.");
+    });
+});
         { once: true },
       );
     </script>
